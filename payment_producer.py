@@ -1,15 +1,23 @@
+import os
 import datetime
+import ast
 from ensurepip import bootstrap
 import pytz 
 import time 
 import random 
 import json
 from kafka import KafkaProducer
+from dotenv import load_dotenv
+from os.path import join, dirname 
+
+dotenv_path = join(dirname(__file__), "./.env")
+load_dotenv(dotenv_path)
 
 # broker들의 ports Lists
-brokers = ["localhost:9091", "localhost:9092", "localhost:9093"]
+brokers = ast.literal_eval(os.environ.get("BROKERS"))
 producers = KafkaProducer(bootstrap_servers=brokers)
-topicName = "payments"
+topicName = os.environ.get("TOPIC_NAME")
+
 
 
 # 시계열 데이터 생성 

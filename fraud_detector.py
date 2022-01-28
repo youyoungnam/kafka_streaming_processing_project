@@ -1,18 +1,23 @@
+import os
+import json 
+import ast
 from ensurepip import bootstrap
 from kafka import KafkaConsumer, KafkaProducer 
-import json 
+from dotenv import load_dotenv
+from os.path import join, dirname 
 
+dotenv_path = join(dirname(__file__), './.env')
+load_dotenv(dotenv_path)
 
-
-
-brokers =["localhost:9091", "localhost:9092", "localhost:9093"]
-paymentTopicName = "payments"
-
+brokers = ast.literal_eval(os.environ.get("BROKERS"))
+paymentTopicName = os.environ.get("TOPIC_NAME")
+fraud = os.environ.get("FRAUD_TOPIC")
+legit = os.environ.get("LEGIT_TOPIC")
 consumer = KafkaConsumer(paymentTopicName, bootstrap_servers = brokers)
 # 정상 비정상 체크 후 하부 서비스로 메세지를 릴레이 해주기 
 # producer를 만들어주고 두개 정상 비정상 topic를 만들어주자. 
 producer =KafkaProducer(bootstrap_servers = brokers)
-topicList = ["fraud_payments", "legit_topic"]
+topicList = [fraud, legit]
 
 ## 비정상 데이터 처리 
 ## 가상 시나리오 비트코인으로 거래하고 stranger로 보내진 데이터가 비정상 데이터라고 판단
