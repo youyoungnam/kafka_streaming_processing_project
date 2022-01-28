@@ -165,6 +165,14 @@ for messages in consumer:
 
 
 ## 추가계획
-- 정상데이터와 비정상데이터를 mysql에 테이블에 저장하는것을 구현해보자.
+- 정상데이터와 비정상데이터를 mysql에 테이블에 저장하는것을 구현해보자.(구현완료)
+
+
+## 정상데이터와 비정상데이터 실시간 수집 mysql 수집
+### 데이터가 스트림으로 전송될 때 
+![설명30](https://user-images.githubusercontent.com/60678531/151580368-0c9f329a-a91e-4a53-91e5-77258c44171e.PNG)
+
+데이터수집
+![설명31](https://user-images.githubusercontent.com/60678531/151580307-975c7942-3ebd-4ed8-87e4-d3b2261b0f55.PNG)
 
 
