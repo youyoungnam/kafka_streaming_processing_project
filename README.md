@@ -8,7 +8,7 @@
 
 ## 각 Plane 설명
 
-### payment_producer.py 
+### 1.payment_producer.py 
 ```
 import datetime
 from ensurepip import bootstrap
@@ -58,3 +58,7 @@ while True:
     producers.send(topicName, json.dumps(virtual_data).encode("utf-8"))
 
 ```
+1. docker-compose.yml에서 정의한 brokers을 producer에 연결한다. 
+2. 시계열 데이터 생성부분 서울시간 기준으로 데이터를 생성한다.
+3. 가상 거래 데이터 생성부분은 visa, mastercard, bitcoin 3가지로 정해서 랜덤하게 뽑는다.
+4. 가상 데이터를 Stream data로 보내진다고 가정하고 producer로 보낸다.
