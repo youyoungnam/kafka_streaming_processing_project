@@ -15,7 +15,7 @@ fraud = os.environ.get("FRAUD_TOPIC")
 legit = os.environ.get("LEGIT_TOPIC")
 consumer = KafkaConsumer(paymentTopicName, bootstrap_servers = brokers)
 # 정상 비정상 체크 후 하부 서비스로 메세지를 릴레이 해주기 
-# producer를 만들어주고 두개 정상 비정상 topic를 만들어주자. 
+# producer를 만들어주고 두개 정상 비정상 topic를 만들어주자. !!!!!
 producer =KafkaProducer(bootstrap_servers = brokers)
 topicList = [fraud, legit]
 
