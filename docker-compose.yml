@@ -12,18 +12,17 @@ services:
       - ./data/zookeeper/data:/data
       -   ./data/zookeeper/datalog:/datalogco
   mysqls:
+    platform: linux/x86_64
     container_name: kafka_mysql
     image: mysql:latest
     ports:
       - 3306:3306
-    environment:
-      MYSQL_ROOT_PASSWORD: password
+    env_file: .db_env
     restart: always
     volumes:
-      - /mnt/c/Users/dbdud/rekafka_pr/db_folder:/var/lib/mysql/
-
-
+      - ./db_folder:/var/lib/mysql/
   kafka1:
+    platform: linux/x86_64
     image: confluentinc/cp-kafka:7.0.0
     hostname: kafka1
     ports:
@@ -40,6 +39,7 @@ services:
     depends_on:
       - zookeeper
   kafka2:
+    platform: linux/x86_64
     image: confluentinc/cp-kafka:7.0.0
     hostname: kafka2
     ports:
@@ -56,6 +56,7 @@ services:
     depends_on:
       - zookeeper
   kafka3:
+    platform: linux/x86_64
     image: confluentinc/cp-kafka:7.0.0
     hostname: kafka3
     ports:
@@ -72,6 +73,7 @@ services:
     depends_on:
       - zookeeper
   kafdrop:
+    platform: linux/x86_64
     image: obsidiandynamics/kafdrop
     restart: "no"
     ports: 
